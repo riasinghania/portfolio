@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | Projects</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav>
+    <strong>Your Name</strong>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h2>Projects</h2>
+
+    <div class="project-grid">
+      <!-- Repeat this .card for each project -->
+      <article class="card" data-title="Tarot Persona App"
+               data-desc="A social web app that blends tarot readings with personality profiles.
+               Built with HTML, CSS (SASS), JavaScript, and Firebase."
+               data-link="https://github.com/yourname/tarot-persona">
+        <h3>Tarot Persona App</h3>
+        <p class="small">Web / Full-stack</p>
+      </article>
+
+      <article class="card" data-title="Lecture-Desk Redesign"
+               data-desc="Human-centered redesign of university lecture-hall desks,
+               from user interviews to CAD prototypes."
+               data-link="presentation.pdf">
+        <h3>Lecture-Desk Redesign</h3>
+        <p class="small">Design Research</p>
+      </article>
+
+      <!-- Add more cards here -->
+    </div>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <button class="close" id="closeBtn">&times;</button>
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc"></p>
+      <a id="modalLink" class="btn" target="_blank">View on GitHub / Slides</a>
+    </div>
+  </div>
+
+  <script>
+    // open modal
+    document.querySelectorAll(".card").forEach(card => {
+      card.addEventListener("click", () => {
+        document.getElementById("modalTitle").textContent = card.dataset.title;
+        document.getElementById("modalDesc").textContent  = card.dataset.desc;
+        document.getElementById("modalLink").href         = card.dataset.link;
+        document.getElementById("modal").classList.add("open");
+      });
+    });
+
+    // close modal
+    document.getElementById("closeBtn").onclick = () =>
+      document.getElementById("modal").classList.remove("open");
+    document.getElementById("modal").onclick = e => {
+      if (e.target.id === "modal") {
+        e.currentTarget.classList.remove("open");
+      }
+    };
+  </script>
+</body>
+</html>
